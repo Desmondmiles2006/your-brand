@@ -81,14 +81,36 @@ export default function App() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-20 bg-[#0A1F44] text-white text-center">
-        <h3 className="text-3xl font-semibold">Let’s elevate your brand.</h3>
-        <p className="mt-2">Schedule a discovery session with your branding ally.</p>
-        <a href="#contact" className="inline-block mt-6 bg-[#00B6A3] text-white font-bold px-6 py-3 rounded-xl hover:bg-[#01a394]">
-          Start Now
+<section className="py-20 bg-[#0A1F44] text-white">
+  <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
+    {/* Left Side */}
+    <div className="space-y-4">
+      <h3 className="text-3xl font-semibold">Let’s elevate your brand.</h3>
+      <p className="">Schedule a discovery session with your branding ally.</p>
+      <a href="#contact" className="inline-block bg-[#00B6A3] text-white font-bold px-6 py-3 rounded-xl hover:bg-[#01a394]">
+        Start Now
+      </a>
+    </div>
+
+    {/* Right Side */}
+    <div className="text-right space-y-4 text-[#E9C46A]">
+      <div>
+        <h3 className="text-3xl font-semibold mb-5">Reach Us</h3>
+        <p className="text-[#f2e9d0] mb-5">Connect with us on social platforms</p>
+      </div>
+      <div className="flex justify-end gap-4">
+        <a href="https://www.instagram.com/yourbrand_ally?igsh=MTEzbHFtbG51b3JvNA==" target="_blank" rel="noopener noreferrer">
+          <img src="/instagram.png" alt="Instagram" className="w-12 h-12" />
         </a>
-      </section>
+        <a href="https://www.linkedin.com/company/your_brand_ally/" target="_blank" rel="noopener noreferrer">
+          <img src="/linkedin.png" alt="LinkedIn" className="w-12 h-12" />
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
 
       {/* Footer */}
       <footer className="bg-white text-center py-6 text-sm text-[#1E3D58] border-t">
