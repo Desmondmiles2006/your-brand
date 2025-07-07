@@ -1,5 +1,5 @@
 // src/App.js
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 
 const challenges = [
@@ -18,21 +18,56 @@ const offerings = [
 ];
 
 export default function App() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <div className="font-sans text-[#0A1F44] bg-white">
       {/* Navbar */}
       <header className="sticky top-0 z-50 bg-white shadow-md">
         <div className="max-w-6xl mx-auto px-4 py-5 flex justify-between items-center">
-          <div className="flex items-center">
-            <img src="/logo.png" alt="logo" className="h-20" />
-          </div>
-          <nav className="space-x-6 font-medium text-lg text-[#0A1F44]">
+          <img src="/logo.png" alt="logo" className="h-20" />
+
+          {/* Desktop Nav */}
+          <nav className="hidden md:flex space-x-6 font-medium text-lg text-[#0A1F44]">
             <a href="#" className="hover:text-[#00B6A3]">Home</a>
             <a href="#challenges" className="hover:text-[#00B6A3]">About Us</a>
             <a href="#portfolio" className="hover:text-[#00B6A3]">Portfolio</a>
             <a href="#contact" className="hover:text-[#00B6A3]">Contact</a>
           </nav>
+
+          {/* Mobile Hamburger Icon */}
+          <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden focus:outline-none">
+            <svg className="w-6 h-6 text-[#0A1F44]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
         </div>
+
+        {/* Mobile Nav Drawer */}
+        {menuOpen && (
+  <>
+    {/* Background Overlay */}
+    <div
+      onClick={() => setMenuOpen(false)}
+      className="fixed inset-0 bg-black bg-opacity-40 z-40"
+    ></div>
+
+    {/* Side Drawer */}
+    <div className="fixed top-0 left-0 z-50 w-64 h-full bg-white shadow-lg p-6 space-y-6 transition-transform transform translate-x-0 md:hidden">
+      <button
+        onClick={() => setMenuOpen(false)}
+        className="text-[#0A1F44] font-bold text-xl absolute top-4 right-4"
+      >
+        ×
+      </button>
+      <a onClick={() => setMenuOpen(false)} href="#" className="block text-[#0A1F44] font-medium hover:text-[#00B6A3]">Home</a>
+      <a onClick={() => setMenuOpen(false)} href="#challenges" className="block text-[#0A1F44] font-medium hover:text-[#00B6A3]">About Us</a>
+      <a onClick={() => setMenuOpen(false)} href="#portfolio" className="block text-[#0A1F44] font-medium hover:text-[#00B6A3]">Portfolio</a>
+      <a onClick={() => setMenuOpen(false)} href="#contact" className="block text-[#0A1F44] font-medium hover:text-[#00B6A3]">Contact</a>
+    </div>
+  </>
+)}
+
       </header>
 
       {/* Hero */}
