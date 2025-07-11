@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Routes, Route, Link } from "react-router-dom";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import Portfolio from "./pages/Portfolio";
 
 const challenges = [
   { title: "Spinning a million plates", desc: "You're juggling everything — branding is just one more plate to drop.", image: "/challenge1.png" },
@@ -139,6 +140,7 @@ export default function App() {
 
         <Route path="/about" element={<About />} />
         <Route path="/contactus" element={<Contact />} />
+        <Route path="/portfolio" element={<Portfolio />} />
       </Routes>
 
       <footer className="bg-white text-center py-6 text-sm text-[#1E3D58] border-t">
