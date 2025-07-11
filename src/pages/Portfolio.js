@@ -49,9 +49,9 @@ export default function Portfolio() {
           </motion.p>
         </div>
 
-        {/* Marquee Projects Section */}
+        {/* Marquee Projects Section - horizontal for md and up */}
         <div className="relative h-[420px] overflow-hidden mb-4">
-          <div className="absolute w-full flex flex-col items-center">
+          <div className="md:hidden absolute w-full flex flex-col items-center">
             <div className="relative group h-[360px] w-[340px] overflow-hidden">
               <div className="animate-marquee-vertical flex flex-col space-y-6 group-hover:paused">
                 {[...projects, ...projects].map((proj, idx) => (
@@ -60,6 +60,32 @@ export default function Portfolio() {
                     className={`rounded-xl p-5 shadow-lg ${proj.bg} text-[#0A1F44] max-w-sm`}
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: idx * 0.05 }}
+                    viewport={{ once: true }}
+                  >
+                    <img
+                      src={proj.image}
+                      alt={proj.name}
+                      className="rounded-md mb-3 w-full h-36 object-cover"
+                    />
+                    <h3 className="text-xl font-bold mb-1">{proj.name}</h3>
+                    <p className="text-sm mb-1">{proj.description}</p>
+                    <p className="text-xs text-[#1E3D58]">{proj.services}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="hidden md:block overflow-hidden">
+            <div className="group overflow-hidden whitespace-nowrap">
+              <div className="inline-flex animate-marquee-horizontal space-x-6 group-hover:paused">
+                {[...projects, ...projects].map((proj, idx) => (
+                  <motion.div
+                    key={idx}
+                    className={`rounded-xl p-5 shadow-lg ${proj.bg} text-[#0A1F44] min-w-[300px]`}
+                    initial={{ opacity: 0, x: 30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
                     transition={{ delay: idx * 0.05 }}
                     viewport={{ once: true }}
                   >
@@ -138,6 +164,18 @@ export default function Portfolio() {
             animation-play-state: running;
           }
           .group:hover .animate-marquee-vertical {
+            animation-play-state: paused;
+          }
+
+          @keyframes marquee-horizontal {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+          }
+          .animate-marquee-horizontal {
+            animation: marquee-horizontal 25s linear infinite;
+            animation-play-state: running;
+          }
+          .group:hover .animate-marquee-horizontal {
             animation-play-state: paused;
           }
         `}
