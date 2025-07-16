@@ -1,5 +1,36 @@
-node_modules
-.DS_Store
+# Root: Ignore node modules for both frontend and backend
+node_modules/
+notion-contact-api/node_modules/
+
+# Build output (React production build)
+build/
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Local environment files
 .env
-build
+.env.local
+.env.*.local
+notion-contact-api/.env
+
+# macOS system files
+.DS_Store
+
+# Editor/IDE settings
+.vscode/
+.idea/
+
+# Optional: ignore any uploads or temp files
+*.sqlite
+*.bak
+uploads/
+tmp/
+
+# Lock files (optional if you want deterministic builds)
+# Uncomment one if you prefer not to track
+# package-lock.json
+# yarn.lock
 

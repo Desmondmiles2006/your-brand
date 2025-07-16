@@ -27,32 +27,37 @@ const projects = [
 
 export default function Portfolio() {
   return (
-    <div className="bg-[#0A1F44] py-24 text-white min-h-screen">
-      <div className="max-w-6xl mx-auto px-4">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="text-4xl font-bold"
-          >
-            Brand Stories We’re Proud Of
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="mt-4 max-w-2xl mx-auto text-[#D0D9E1]"
-          >
-            From bold new startups to scaling ventures, here’s how we brought their vision to life — consistently, creatively, and fast.
-          </motion.p>
-        </div>
+    <div className="bg-[#0A1F44] pt-6 pb-16 text-white min-h-screen">
+  <div className="max-w-6xl mx-auto px-4">
+    {/* Header Title */}
+    <div className="text-center mb-2">
+      <motion.h2
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.1 }}
+        className="text-4xl font-bold"
+      >
+        Brand Stories We’re Proud Of
+      </motion.h2>
+    </div>
+
+    {/* Header Description */}
+    <div className="text-center mb-10 mt-10">
+      <motion.p
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2 }}
+        className="mt-2 max-w-2xl mx-auto text-[#D0D9E1]"
+      >
+        From bold new startups to scaling ventures, here’s how we brought their vision to life — consistently, creatively, and fast.
+      </motion.p>
+    </div>
+
 
         {/* Marquee Projects Section - horizontal for md and up */}
-        <div className="relative h-[420px] overflow-hidden mb-4">
+        <div className="relative h-[360px] overflow-hidden mb-4">
           <div className="md:hidden absolute w-full flex flex-col items-center">
-            <div className="relative group h-[360px] w-[340px] overflow-hidden">
+            <div className="relative group h-[320px] w-[340px] overflow-hidden">
               <div className="animate-marquee-vertical flex flex-col space-y-6 group-hover:paused">
                 {[...projects, ...projects].map((proj, idx) => (
                   <motion.div
@@ -105,7 +110,7 @@ export default function Portfolio() {
         </div>
 
         {/* Testimonial Section */}
-        <div className="text-center mt-10">
+        <div className="text-center mb-8">
           <motion.blockquote
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -118,7 +123,7 @@ export default function Portfolio() {
         </div>
 
         {/* Stats Section */}
-        <div className="flex flex-col md:flex-row justify-center items-center gap-12 mt-12 text-white text-center">
+        <div className="flex flex-col md:flex-row justify-center items-center gap-12 mt-4 text-white text-center">
           <div>
             <p className="text-2xl font-bold">48 hrs</p>
             <p className="text-sm">average delivery time</p>
@@ -134,12 +139,12 @@ export default function Portfolio() {
         </div>
 
         {/* CTA Section */}
-        <div className="text-center mt-16">
+        <div className="text-center mt-14">
           <motion.h3
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-3xl font-semibold mb-4"
+            className="text-3xl font-semibold mb-6"
           >
             Ready to Build a Brand That Stands Out?
           </motion.h3>
