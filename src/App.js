@@ -182,17 +182,6 @@ export default function App() {
         </AnimatePresence>
       </header>
 
-      {/* Animated Background Watermark */}
-      <div className="absolute z-0 left-0 right-0 text-center top-36 pointer-events-none select-none">
-        <motion.span
-          className="text-[8rem] font-extrabold text-[#E6F9F7] opacity-70 tracking-widest"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.2, duration: 1.2 }}
-        >
-          BRANDING
-        </motion.span>
-      </div>
 
       <Routes>
         <Route
