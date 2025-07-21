@@ -1,0 +1,28 @@
+<svg width="1600" height="700" viewBox="0 0 1600 700" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="bg1" cx="0.7" cy="0.4" r="1.1">
+      <stop offset="0%" stop-color="#00B6A3" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#00B6A3" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="bg2" cx="0.2" cy="0.8" r="1.1">
+      <stop offset="0%" stop-color="#E9C46A" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#E9C46A" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="bg3" cx="0.9" cy="0.1" r="1.0">
+      <stop offset="0%" stop-color="#0A1F44" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#0A1F44" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="700" fill="white"/>
+  <ellipse cx="1350" cy="170" rx="380" ry="170" fill="url(#bg1)" />
+  <ellipse cx="350" cy="640" rx="420" ry="80" fill="url(#bg2)" />
+  <ellipse cx="1250" cy="680" rx="320" ry="90" fill="url(#bg3)" />
+  <!-- Abstract blob top left -->
+  <path d="M250 130 Q180 60 370 60 T540 130 Q570 210 420 210 Q280 220 250 130Z"
+        fill="#E6F9F7" opacity="0.5"/>
+  <!-- Abstract teal wave bottom right -->
+  <path d="M1350 640 Q1520 720 1600 600 L1600 700 L1200 700 Q1280 670 1350 640Z"
+        fill="#00B6A3" opacity="0.09"/>
+  <!-- Gold soft blob mid left -->
+  <ellipse cx="220" cy="370" rx="130" ry="60" fill="#E9C46A" opacity="0.12"/>
+</svg>
