@@ -199,27 +199,28 @@ export default function App() {
     className="absolute inset-0 w-full h-full object-cover -z-10 pointer-events-none"
     draggable="false"
   />
-                {/* Morphing blobs */}
-                <motion.svg
-                  className="absolute left-[-180px] top-[-120px] w-[600px] opacity-20 -z-10"
-                  style={{ x: parallax.x, y: parallax.y }}
-                  initial={{ scale: 0.7, rotate: 0 }}
-                  animate={{ scale: 1.05, rotate: 360 }}
-                  transition={{ repeat: Infinity, duration: 30, ease: "linear" }}
-                  viewBox="0 0 600 600"
-                >
-                  <path fill="#00B6A3" d="M420.4,347.7Q422,455,321,470.5Q220,486,148.5,393.5Q77,301,167.5,202.5Q258,104,366,152Q474,200,420.4,347.7Z" />
-                </motion.svg>
-                <motion.svg
-                  className="absolute right-[-180px] bottom-[-140px] w-[500px] opacity-20 -z-10"
-                  style={{ x: -parallax.x, y: -parallax.y }}
-                  initial={{ scale: 0.5, rotate: 0 }}
-                  animate={{ scale: 1.1, rotate: -330 }}
-                  transition={{ repeat: Infinity, duration: 36, ease: "linear" }}
-                  viewBox="0 0 500 500"
-                >
-                  <path fill="#E9C46A" d="M357.6,277.3Q357,354,285,387.5Q213,421,162.5,360.5Q112,300,176,212.5Q240,125,311.5,176Q383,227,357.6,277.3Z" />
-                </motion.svg>
+                {/* Morphing blobs now in front */}
+<motion.svg
+  className="absolute left-[-180px] top-[-120px] w-[600px] opacity-30 z-20 pointer-events-none"
+  style={{ x: parallax.x, y: parallax.y }}
+  initial={{ scale: 0.7, rotate: 0 }}
+  animate={{ scale: 1.05, rotate: 360 }}
+  transition={{ repeat: Infinity, duration: 30, ease: "linear" }}
+  viewBox="0 0 600 600"
+>
+  <path fill="#00B6A3" d="M420.4,347.7Q422,455,321,470.5Q220,486,148.5,393.5Q77,301,167.5,202.5Q258,104,366,152Q474,200,420.4,347.7Z" />
+</motion.svg>
+<motion.svg
+  className="absolute right-[-180px] bottom-[-140px] w-[500px] opacity-30 z-20 pointer-events-none"
+  style={{ x: -parallax.x, y: -parallax.y }}
+  initial={{ scale: 0.5, rotate: 0 }}
+  animate={{ scale: 1.1, rotate: -330 }}
+  transition={{ repeat: Infinity, duration: 36, ease: "linear" }}
+  viewBox="0 0 500 500"
+>
+  <path fill="#E9C46A" d="M357.6,277.3Q357,354,285,387.5Q213,421,162.5,360.5Q112,300,176,212.5Q240,125,311.5,176Q383,227,357.6,277.3Z" />
+</motion.svg>
+
                 {/* Animated Main Text */}
                 <motion.h2
                   initial={{ opacity: 0, y: 60, scale: 0.9 }}
@@ -228,17 +229,10 @@ export default function App() {
                   className="text-6xl md:text-7xl font-black tracking-tight"
                   style={{ textShadow: "0 2px 24px #E6F9F7" }}
                 >
-                  <span className="inline-block relative">
-                    One Ally.
-                    {/* Animated Underline */}
-                    <motion.span
-                      className="absolute left-0 right-0 bottom-0 h-3 bg-[#E9C46A] rounded-lg"
-                      initial={{ width: 0 }}
-                      animate={{ width: "100%" }}
-                      transition={{ delay: 0.8, duration: 0.7 }}
-                    />
-                  </span>
                   <br />
+                     <span className="inline-block relative">
+                    One Ally.
+                  </span>
                   <motion.span
                     initial={{ x: 100, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
