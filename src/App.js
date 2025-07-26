@@ -5,7 +5,7 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Portfolio from "./pages/Portfolio";
 
-// --------- COMPONENTS & DATA ---------
+// --------- DATA ---------
 const challenges = [
   { title: "Spinning a million plates", desc: "You're juggling everything — branding is just one more plate to drop.", image: "/challenge1.png" },
   { title: "DIY branding falls flat", desc: "Templates and Canva only get you so far. Your brand deserves more.", image: "/challenge2.png" },
@@ -13,21 +13,21 @@ const challenges = [
 ];
 
 const offerings = [
-  { title: "Brand Kits", desc: "Precise brand identity creation", image: "/target.png" },
-  { title: "Investor Decks", desc: "Data-backed pitch decks", image: "/bar-chart.png" },
-  { title: "Website", desc: "Online brand identity and presence", image: "/web-analytics.png" },
-  { title: "Pitch Scripts", desc: "Storytelling through narrative decks", image: "/documentation.png" },
-  { title: "Marketing", desc: "Outreach and awareness campaigns", image: "/shopping-online.png" },
-  { title: "Event Branding", desc: "Event visuals and rollout", image: "/calendar.png" },
+  { title: "Brand Kits", desc: "Precise brand identity creation", image: "/target1.jpg" },
+  { title: "Investor Decks", desc: "Data-backed pitch decks", image: "/bar-chart.jpg" },
+  { title: "Website", desc: "Online brand identity and presence", image: "/web-analytics1.jpg" },
+  { title: "Pitch Scripts", desc: "Storytelling through narrative decks", image: "/documentation.jpg" },
+  { title: "Marketing", desc: "Outreach and awareness campaigns", image: "/calendar1.jpg" },
+  { title: "Event Branding", desc: "Event visuals and rollout", image: "/shopping-online1.jpg" },
 ];
 
-// --------- MarqueeOfferings ---------
-const MarqueeOfferings = ({ offerings }) => {
+// --------- MARQUEE COMPONENT ---------
+function OfferingsMarquee({ items }) {
   const controls = useAnimation();
   const marqueeRef = useRef(null);
 
-  const CARD_WIDTH = 340 + 32; // card width + gap (px)
-  const TOTAL = offerings.length;
+  const CARD_WIDTH = 420 + 32;
+  const TOTAL = items.length;
   const LOOP_WIDTH = CARD_WIDTH * TOTAL;
 
   useEffect(() => {
@@ -38,64 +38,78 @@ const MarqueeOfferings = ({ offerings }) => {
           repeat: Infinity,
           repeatType: "loop",
           ease: "linear",
-          duration: 14,
+          duration: 22,
         },
       },
     });
   }, [controls, LOOP_WIDTH]);
 
-  // Pause/Resume on hover
-  const handleHoverStart = () => controls.stop();
-  const handleHoverEnd = () =>
-    controls.start({
-      x: [marqueeRef.current?.offsetLeft || 0, -LOOP_WIDTH],
-      transition: {
-        x: {
-          repeat: Infinity,
-          repeatType: "loop",
-          ease: "linear",
-          duration: 14,
-        },
-      },
-    });
-
   return (
-    <div className="relative w-full overflow-hidden py-2 select-none">
+    <div className="relative w-full overflow-hidden">
       <motion.div
         ref={marqueeRef}
         className="flex space-x-8"
         animate={controls}
-        onMouseEnter={handleHoverStart}
-        onMouseLeave={handleHoverEnd}
         style={{ width: LOOP_WIDTH * 2 }}
       >
-        {[...offerings, ...offerings].map((o, i) => (
-          <motion.div
-            key={i}
-            className="min-w-[340px] bg-white p-8 rounded-xl shadow-xl text-center mx-2 hover:scale-105 hover:rotate-1 transition-transform duration-300"
-            whileHover={{
-              scale: 1.1,
-              rotate: 2,
-              boxShadow: "0 6px 32px 0 rgba(0,182,163,0.14)",
-              zIndex: 2,
-            }}
-            initial={false}
-          >
-            <motion.img
-              src={o.image}
-              alt={o.title}
-              className="w-16 h-16 mx-auto mb-4 drop-shadow-lg"
-              whileHover={{ scale: 1.18, rotate: 8 }}
-              transition={{ type: "spring", stiffness: 200 }}
-            />
-            <h4 className="text-xl font-bold text-[#0A1F44] mb-2">{o.title}</h4>
-            <p className="text-md text-[#1E3D58]">{o.desc}</p>
-          </motion.div>
-        ))}
+        {[...items, ...items].map((o, i) => {
+          const isEven = i % 2 === 0;
+          return (
+            <div
+              key={i}
+              className={`min-w-[420px] max-w-[420px] h-[440px] rounded-2xl shadow-xl flex flex-col justify-end relative mx-4 overflow-hidden
+                ${isEven ? "bg-white" : "bg-[#1D3557]"}`}
+              style={{
+                boxShadow: "0 8px 36px 0 #1EB39C12",
+                borderRadius: "2rem",
+              }}
+            >
+              {/* IMAGE, floats at top-center */}
+              <div className="w-full flex-1 flex items-center justify-center pt-8 pb-4 relative z-10">
+                <img
+                  src={o.image}
+                  alt={o.title}
+                  className="object-contain max-h-[220px] w-auto mx-auto"
+                  style={{
+                    filter: isEven
+                      ? "drop-shadow(0 6px 28px #2222)"
+                      : "drop-shadow(0 6px 22px #fff7)",
+                  }}
+                />
+              </div>
+              {/* TEXT at the bottom, always visible */}
+              <div className={`w-full px-8 py-6 ${isEven ? "" : ""}`}>
+                <h4
+                  className={`text-[1.55rem] font-extrabold leading-snug ${
+                    isEven ? "text-[#1D3557]" : "text-white"
+                  }`}
+                  style={{
+                    textShadow: isEven
+                      ? "0 1px 3px #fff9"
+                      : "0 1px 6px #1d3557cc",
+                  }}
+                >
+                  {o.title}
+                </h4>
+                <p
+                  className={`mt-2 text-lg ${
+                    isEven ? "text-[#1D3557]/80" : "text-white/80"
+                  }`}
+                  style={{
+                    fontWeight: 500,
+                  }}
+                >
+                  {o.desc}
+                </p>
+              </div>
+            </div>
+          );
+        })}
       </motion.div>
     </div>
   );
-};
+}
+
 
 // --------- MAIN APP ---------
 export default function App() {
@@ -182,7 +196,6 @@ export default function App() {
         </AnimatePresence>
       </header>
 
-
       <Routes>
         <Route
           path="/"
@@ -193,33 +206,33 @@ export default function App() {
                 className="relative min-h-[70vh] flex flex-col justify-center items-center text-center bg-gradient-to-br from-[#E6F9F7] to-white overflow-hidden"
                 onMouseMove={handleMouseMove}
               >
-                 <img
-    src="/hero-bg.svg"
-    alt=""
-    className="absolute inset-0 w-full h-full object-cover -z-10 pointer-events-none"
-    draggable="false"
-  />
+                <img
+                  src="/hero-bg.svg"
+                  alt=""
+                  className="absolute inset-0 w-full h-full object-cover -z-10 pointer-events-none"
+                  draggable="false"
+                />
                 {/* Morphing blobs now in front */}
-<motion.svg
-  className="absolute left-[-180px] top-[-120px] w-[600px] opacity-30 z-20 pointer-events-none"
-  style={{ x: parallax.x, y: parallax.y }}
-  initial={{ scale: 0.7, rotate: 0 }}
-  animate={{ scale: 1.05, rotate: 360 }}
-  transition={{ repeat: Infinity, duration: 30, ease: "linear" }}
-  viewBox="0 0 600 600"
->
-  <path fill="#00B6A3" d="M420.4,347.7Q422,455,321,470.5Q220,486,148.5,393.5Q77,301,167.5,202.5Q258,104,366,152Q474,200,420.4,347.7Z" />
-</motion.svg>
-<motion.svg
-  className="absolute right-[-180px] bottom-[-140px] w-[500px] opacity-30 z-20 pointer-events-none"
-  style={{ x: -parallax.x, y: -parallax.y }}
-  initial={{ scale: 0.5, rotate: 0 }}
-  animate={{ scale: 1.1, rotate: -330 }}
-  transition={{ repeat: Infinity, duration: 36, ease: "linear" }}
-  viewBox="0 0 500 500"
->
-  <path fill="#E9C46A" d="M357.6,277.3Q357,354,285,387.5Q213,421,162.5,360.5Q112,300,176,212.5Q240,125,311.5,176Q383,227,357.6,277.3Z" />
-</motion.svg>
+                <motion.svg
+                  className="absolute left-[-180px] top-[-120px] w-[600px] opacity-30 z-20 pointer-events-none"
+                  style={{ x: parallax.x, y: parallax.y }}
+                  initial={{ scale: 0.7, rotate: 0 }}
+                  animate={{ scale: 1.05, rotate: 360 }}
+                  transition={{ repeat: Infinity, duration: 30, ease: "linear" }}
+                  viewBox="0 0 600 600"
+                >
+                  <path fill="#00B6A3" d="M420.4,347.7Q422,455,321,470.5Q220,486,148.5,393.5Q77,301,167.5,202.5Q258,104,366,152Q474,200,420.4,347.7Z" />
+                </motion.svg>
+                <motion.svg
+                  className="absolute right-[-180px] bottom-[-140px] w-[500px] opacity-30 z-20 pointer-events-none"
+                  style={{ x: -parallax.x, y: -parallax.y }}
+                  initial={{ scale: 0.5, rotate: 0 }}
+                  animate={{ scale: 1.1, rotate: -330 }}
+                  transition={{ repeat: Infinity, duration: 36, ease: "linear" }}
+                  viewBox="0 0 500 500"
+                >
+                  <path fill="#E9C46A" d="M357.6,277.3Q357,354,285,387.5Q213,421,162.5,360.5Q112,300,176,212.5Q240,125,311.5,176Q383,227,357.6,277.3Z" />
+                </motion.svg>
 
                 {/* Animated Main Text */}
                 <motion.h2
@@ -230,7 +243,7 @@ export default function App() {
                   style={{ textShadow: "0 2px 24px #E6F9F7" }}
                 >
                   <br />
-                     <span className="inline-block relative">
+                  <span className="inline-block relative">
                     One Ally.
                   </span>
                   <motion.span
@@ -250,12 +263,9 @@ export default function App() {
                 >
                   Your all-in-one brand partner — strategy, design, content and beyond.
                 </motion.p>
-                
-
-
               </section>
 
-              {/* Challenges (Scroll-triggered) */}
+              {/* Challenges */}
               <section id="challenges" className="py-24 bg-white">
                 <div className="max-w-6xl mx-auto px-4">
                   <motion.h3
@@ -293,27 +303,18 @@ export default function App() {
                 </div>
               </section>
 
-              {/* Offerings (Marquee effect) */}
-              <section id="portfolio" className="py-24 bg-[#F8FAFB] relative overflow-hidden">
-                <div className="max-w-6xl mx-auto px-4">
-                  <motion.h3
-                    className="text-3xl font-semibold text-center text-[#00B6A3] mb-3"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                  >
-                    Our Offerings
-                  </motion.h3>
-                  <motion.p
-                    className="text-center mb-8 text-[#1E3D58]"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.15 }}
-                  >
-                    We deliver the brand assets your startup needs at every stage
-                  </motion.p>
-                  <MarqueeOfferings offerings={offerings} />
+              {/* Offerings Marquee */}
+              <section className="py-24 bg-[#F8FAFB] relative overflow-hidden min-h-[530px]">
+                <div className="max-w-7xl mx-auto px-4">
+                 <h3 className="text-center mb-8 text-[2.4rem] md:text-[3.2rem] font-extrabold uppercase tracking-[.18em] text-[#00B6A3] drop-shadow-sm">
+  Our Offerings
+</h3>
+
+                 <p className="text-center mb-8 text-[#000000] text-lg italic tracking-wide font-[400]">
+  We deliver the brand assets your startup needs at every stage
+</p>
+
+                  <OfferingsMarquee items={offerings} />
                 </div>
               </section>
 
